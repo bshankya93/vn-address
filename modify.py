@@ -1,12 +1,17 @@
 import json
+from os import listdir
+from os.path import isfile, join
+mypath = 'xa-phuong'
+outpath = 'nk-xp'
+onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+for file in onlyfiles:
+    fj = open(mypath+'/'+file)
 
-ftp = open('tinh_tp.json')
-data = json.load(ftp)
-ftp.close()
-a = []
-for i in data:
-    a.append(data[i])
-write = open('nk_tp.json', 'w')
-write.write(json.dumps(a))
-write.close()
-print(a)
+    print(file)
+    data = json.load(fj)
+    a = []
+    for i in data:
+        a.append(data[i])
+    oj = open(outpath + '/' + file, 'w')
+    oj.write(json.dumps(a))
+    oj.close()
